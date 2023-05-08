@@ -810,7 +810,7 @@ exports.transfer = function (req, res) {
                         function (err, result, fields) {
                             if (err) reject(err);
                             else {
-                                console.log(result.length);
+                                console.log(result);
                                 resolve(result);
                             }
                         });
