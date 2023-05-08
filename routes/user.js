@@ -794,7 +794,7 @@ exports.transfer = function (req, res) {
         var request = new sql.Request();
 
         // query to the database and get the records
-        request.query('select top 50000  * from [dbo].[add_client_table] where id >11110', async function (err, recordset) {
+        request.query('select top 75000  * from [dbo].[add_client_table] where id >61110', async function (err, recordset) {
 
             if (err) console.log(err)
 
@@ -802,14 +802,17 @@ exports.transfer = function (req, res) {
             // console.log(recordset.recordset.length);
             var promises = [];
             for (var i = 0; i < recordset.recordsets[0].length; i++) {
-                console.log(recordset.recordsets[0][i].id);
+                // console.log(recordset.recordsets[0][i].id);
                 var record = recordset.recordsets[0][i];
                 var promise = new Promise(function (resolve, reject) {
                     con2.query("INSERT INTO `add_client_table`(`id`, `mw_code`, `marvi_worker_name`, `lhv_code`, `lhv_name`, `village_name`, `uc_name`, `tehsil_name`, `district_name`, `reg_date`, `cnic_num`, `contact_num`, `edu`, `occupation`, `mwra_age`, `marriage_duration`, `pregnant_check`, `no_of_months`, `no_of_children`, `no_of_abortion`, `no_of_dead_child`, `reason_death`, `child_age_5plus`, `age_of_children`, `current_userFP`, `method_of_fp_current`, `ever_userFP`, `method_of_fp_ever`, `become_userFP`, `reason_userFP`, `cr_code`, `client_name`, `husband_name`, `gap_of_births`, `youngest_child_age`, `user_status`, `user_type`, `user_by_wealth`, `services`, `user_by_occasion`, `user_by_disability`, `client_service_date`, `contra_method`, `next_service_date`, `contra_quantity`, `contra_frequency`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
                         [record.id, record.mw_code, record.marvi_worker_name, record.lhv_code, record.lhv_name, record.village_name, record.uc_name, record.tehsil_name, record.district_name, record.reg_date, record.cnic_num, record.contact_num, record.edu, record.occupation, record.mwra_age, record.marriage_duration, record.pregnant_check, record.no_of_months, record.no_of_children, record.no_of_abortion, record.no_of_dead_child, record.reason_death, record.child_age_5plus, record.age_of_children, record.current_userFP, record.method_of_fp_current, record.ever_userFP, record.method_of_fp_ever, record.become_userFP, record.reason_userFP, record.cr_code, record.client_name, record.husband_name, record.gap_of_births, record.youngest_child_age, record.user_status, record.user_type, record.user_by_wealth, record.services, record.user_by_occasion, record.user_by_disability, record.client_service_date, record.contra_method, record.next_service_date, record.contra_quantity, record.contra_frequency],
                         function (err, result, fields) {
                             if (err) reject(err);
-                            else resolve(result);
+                            else {
+                                console.log(result.length);
+                                resolve(result);
+                            }
                         });
                 });
                 promises.push(promise);
