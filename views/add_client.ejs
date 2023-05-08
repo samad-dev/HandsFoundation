@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from designreset.com/cork/ltr/demo12/table_dt_html5.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 03 May 2021 05:26:52 GMT -->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+    <title>Add Clients</title>
+    <link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico" />
+    <link href="/assets/css/loader.css" rel="stylesheet" type="text/css" />
+    <script src="/assets/js/loader.js"></script>
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:400,500,600,700&amp;display=swap" rel="stylesheet">
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/plugins.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/structure.css" rel="stylesheet" type="text/css" class="structure" />
+    <!-- END GLOBAL MANDATORY STYLES -->
+
+    <!-- BEGIN PAGE LEVEL CUSTOM STYLES -->
+    <link rel="stylesheet" type="text/css" href="/plugins/table/datatable/datatables.css">
+    <link rel="stylesheet" type="text/css" href="/plugins/table/datatable/custom_dt_html5.css">
+    <link rel="stylesheet" type="text/css" href="/plugins/table/datatable/dt-global_style.css">
+    <link rel="stylesheet" type="text/css" href="/plugins/bootstrap-select/bootstrap-select.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/forms/theme-checkbox-radio.css">
+    <!-- END PAGE LEVEL CUSTOM STYLES -->
+
+    <!-- BEGIN THEME GLOBAL STYLES -->
+    <link href="/plugins/flatpickr/flatpickr.css" rel="stylesheet" type="text/css">
+    <link href="/plugins/noUiSlider/nouislider.min.css" rel="stylesheet" type="text/css">
+    <!-- END THEME GLOBAL STYLES -->
+
+    <!--  BEGIN CUSTOM STYLE FILE  -->
+    <link href="/assets/css/scrollspyNav.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/flatpickr/custom-flatpickr.css" rel="stylesheet" type="text/css">
+    <link href="/plugins/noUiSlider/custom-nouiSlider.css" rel="stylesheet" type="text/css">
+    <link href="/plugins/bootstrap-range-Slider/bootstrap-slider.css" rel="stylesheet" type="text/css">
+    <!--  END CUSTOM STYLE FILE  -->
+</head>
+
+<body class="sidebar-noneoverflow admin-header">
+
+    <!-- BEGIN LOADER -->
+    <div id="load_screen">
+        <div class="loader">
+            <div class="loader-content">
+                <div class="spinner-grow align-self-center"></div>
+            </div>
+        </div>
+    </div>
+    <!--  END LOADER -->
+
+    <!--  BEGIN MAIN CONTAINER  -->
+    <div class="main-container" id="container">
+
+        <div class="overlay"></div>
+        <div class="search-overlay"></div>
+
+        <!--  BEGIN SIDEBAR  -->
+        <%- include("sidebar") %>
+            <!--  END SIDEBAR  -->
+
+            <!--  BEGIN CONTENT AREA  -->
+            <div id="content" class="main-content">
+                <div class="layout-px-spacing">
+
+                    <div class="content-container">
+
+                        <div class="col layout-top-spacing">
+                            <div class="col-left-content">
+
+                                <div class="header-container">
+                                    <header class="header navbar navbar-expand-sm">
+                                        <div class="d-flex">
+                                            <a href="javascript:void(0);" class="sidebarCollapse"
+                                                data-placement="bottom">
+                                                <div class="bt-menu-trigger">
+                                                    <span></span>
+                                                </div>
+                                            </a>
+                                            <div class="page-header">
+                                                <div class="page-title">
+                                                    <h3>Add Clients</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="header-actions">
+
+                                            <div class="toggle-notification-bar">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="feather feather-bell">
+                                                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                                                    <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </header>
+                                </div>
+
+                                <div class="admin-data-content layout-top-spacing">
+                                    <div class="widget-content widget-content-area">
+
+                                        <form method="post" action="/addnew_client">
+                                            <div class="container-fluid p-5">
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="exampleFormControlInput1">MW Code</label>
+                                                            <input type="text" class="form-control" id="mw_code"
+                                                                name="mw_code">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="exampleFormControlInput1">Marvi Worker
+                                                                Name</label>
+                                                            
+                                                                <select class="selectpicker" data-live-search="true" onchange="setname()"
+                                                                data-width="100%" id="marvi_worker_name" name="marvi_worker_name">
+                                                                
+                                                                <% if(listData2.length!=0){ var i=1; var j=1;
+                                                                    listData2.forEach(function(data) { %>
+                                                                    <option value="<%= data.marvi_name %>">
+                                                                        <%= data.marvi_name %>
+                                                                    </option>
+
+                                                                    <% }); } %>
+
+                                                            </select>   
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="exampleFormControlInput1">LHV Code</label>
+                                                            <input type="text" class="form-control" id="lhv_code"
+                                                                name="lhv_code">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>LHV Name</label>
+                                                            <select class="selectpicker" data-live-search="true"
+                                                                data-width="100%" id="lhv_name" name="lhv_name">
+                                                                <option value="">Select LHV Name </option>
+                                                                <% if(listData.length!=0){ var i=1; var j=1;
+                                                                    listData.forEach(function(data) { %>
+                                                                    <option value="<%= data.lhv_name %>">
+                                                                        <%= data.lhv_name %>
+                                                                    </option>
+
+                                                                    <% }); } %>
+
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="exampleFormControlInput1">Village Name</label>
+                                                            <input type="text" class="form-control" id="village_name"
+                                                                name="village_name">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="exampleFormControlInput1">UC Name</label>
+                                                            <input type="text" class="form-control" id="uc_name"
+                                                                name="uc_name">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="exampleFormControlInput1">Tehsil Name</label>
+                                                            <input type="text" class="form-control" id="tehsil_name"
+                                                                name="tehsil_name">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>District Name</label>
+                                                            <select class="selectpicker" data-live-search="true"
+                                                                data-width="100%" id="district_name"
+                                                                name="district_name">
+                                                                <option value="Dadu"> Dadu </option>
+                                                                <option value="Ghotki"> Ghotki </option>
+                                                                <option value="Sanghar"> Sanghar </option>
+                                                                <option value="Umerkot"> Umerkot </option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="exampleFormControlInput1">Registration
+                                                                Date</label>
+                                                            <div class="form-group mb-0">
+                                                                <input id="basicFlatpickr" name="basicFlatpickr"
+                                                                    value=""
+                                                                    class="form-control flatpickr flatpickr-input active"
+                                                                    type="text" placeholder="Select Date..">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="exampleFormControlInput1">CNIC Number</label>
+                                                            <input type="text" class="form-control" id="cnic_num"
+                                                                name="cnic_num">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="exampleFormControlInput1">Contact Number</label>
+                                                            <input type="text" class="form-control" id="contact_num"
+                                                                name="contact_num">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="exampleFormControlInput1">Education</label>
+                                                            <select class="selectpicker" data-live-search="true"
+                                                                data-width="100%" id="edu" name="edu">
+                                                                <option value="0"> 0 </option>
+                                                                <option value="1"> 1 </option>
+                                                                <option value="2"> 2 </option>
+                                                                <option value="3"> 3 </option>
+                                                                <option value="4"> 4 </option>
+                                                                <option value="5"> 5 </option>
+                                                                <option value="6"> 6 </option>
+                                                                <option value="7"> 7 </option>
+                                                                <option value="8"> 8 </option>
+                                                                <option value="9"> 9 </option>
+                                                                <option value="10"> 10 </option>
+                                                                <option value="11"> 11 </option>
+                                                                <option value="12"> 12 </option>
+                                                                <option value="13"> 13 </option>
+                                                                <option value="14"> 14 </option>
+                                                                <option value="15"> 15 </option>
+                                                                <option value="16"> 16 </option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="exampleFormControlInput1">Occupation</label>
+                                                            <input type="text" class="form-control" id="occupation"
+                                                                name="occupation">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="exampleFormControlInput1">MWRA Age (In
+                                                                Years)</label>
+                                                            <input type="text" class="form-control" id="mwra_age"
+                                                                name="mwra_age">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Duration of Marriage (m/y) </label>
+                                                            <select class="selectpicker" data-live-search="true"
+                                                                data-width="100%" id="marriage_duration"
+                                                                name="marriage_duration">
+                                                                <option value="1m">1m</option>
+                                                                <option value="2m">2m</option>
+                                                                <option value="3m">3m</option>
+                                                                <option value="4m">4m</option>
+                                                                <option value="5m">5m</option>
+                                                                <option value="6m">6m</option>
+                                                                <option value="7m">7m</option>
+                                                                <option value="8m">8m</option>
+                                                                <option value="9m">9m</option>
+                                                                <option value="10m">10m</option>
+                                                                <option value="11m">11m</option>
+                                                                <option value="12m">12m</option>
+                                                                <option value="13m">13m</option>
+                                                                <option value="14m">14m</option>
+                                                                <option value="15m">15m</option>
+                                                                <option value="16m">16m</option>
+                                                                <option value="17m">17m</option>
+                                                                <option value="18m">18m</option>
+                                                                <option value="19m">19m</option>
+                                                                <option value="20m">20m</option>
+                                                                <option value="21m">21m</option>
+                                                                <option value="22m">22m</option>
+                                                                <option value="23m">23m</option>
+                                                                <option value="24m">24m</option>
+                                                                <option value="25m">25m</option>
+                                                                <option value="26m">26m</option>
+                                                                <option value="27m">27m</option>
+                                                                <option value="28m">28m</option>
+                                                                <option value="29m">29m</option>
+                                                                <option value="30m">30m</option>
+                                                                <option value="1y">1y</option>
+                                                                <option value="2y">2y</option>
+                                                                <option value="3y">3y</option>
+                                                                <option value="4y">4y</option>
+                                                                <option value="5y">5y</option>
+                                                                <option value="6y">6y</option>
+                                                                <option value="7y">7y</option>
+                                                                <option value="8y">8y</option>
+                                                                <option value="9y">9y</option>
+                                                                <option value="10y">10y</option>
+                                                                <option value="11y">11y</option>
+                                                                <option value="12y">12y</option>
+                                                                <option value="13y">13y</option>
+                                                                <option value="14y">14y</option>
+                                                                <option value="15y">15y</option>
+                                                                <option value="16y">16y</option>
+                                                                <option value="17y">17y</option>
+                                                                <option value="18y">18y</option>
+                                                                <option value="19y">19y</option>
+                                                                <option value="20y">20y</option>
+                                                                <option value="21y">21y</option>
+                                                                <option value="22y">22y</option>
+                                                                <option value="23y">23y</option>
+                                                                <option value="24y">24y</option>
+                                                                <option value="25y">25y</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <div class="n-chk">
+                                                                <label
+                                                                    class="new-control new-checkbox checkbox-primary">
+                                                                    <input id="pregnant_check" name="pregnant_check"
+                                                                        type="checkbox" value="yes"
+                                                                        class="new-control-input" onclick="myFunction()"
+                                                                        unchecked>
+                                                                    <span class="new-control-indicator"></span><label
+                                                                        for="exampleFormControlInput1">Pregnant at the
+                                                                        time of Registration</label>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control" id="no_of_months"
+                                                                name="no_of_months" placeholder="No. of Months"
+                                                                style="display: none;">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="exampleFormControlInput1">No. of Children
+                                                                Alive</label>
+                                                            <input type="text" class="form-control" id="no_of_children"
+                                                                name="no_of_children">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="exampleFormControlInput1">No. of
+                                                                Abortions</label>
+                                                            <input type="text" class="form-control" id="no_of_abortion"
+                                                                name="no_of_abortion">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="exampleFormControlInput1">No. of Children
+                                                                Dead</label>
+                                                            <input type="text" class="form-control"
+                                                                id="no_of_dead_child" name="no_of_dead_child">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="exampleFormControlInput1">Reason of
+                                                                Death</label>
+                                                            <input type="text" class="form-control" id="reason_death"
+                                                                name="reason_death">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <div class="n-chk">
+                                                                <label
+                                                                    class="new-control new-checkbox checkbox-primary">
+                                                                    <input id="child_age_5plus" name="child_age_5plus"
+                                                                        type="checkbox" class="new-control-input"
+                                                                        onclick="myFunction1()" unchecked>
+                                                                    <span class="new-control-indicator"></span><label
+                                                                        for="exampleFormControlInput1">Youngest child if
+                                                                        greater than 5 months</label>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control" id="age_of_children"
+                                                                name="age_of_children" placeholder="Age of children"
+                                                                style="display: none;">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <div class="n-chk">
+                                                                <label
+                                                                    class="new-control new-checkbox checkbox-primary">
+                                                                    <input id="current_userFP" name="current_userFP"
+                                                                        type="checkbox" class="new-control-input"
+                                                                        onclick="myFunction2()" unchecked>
+                                                                    <span class="new-control-indicator"></span><label
+                                                                        for="exampleFormControlInput1">Current User of
+                                                                        FP</label>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control"
+                                                                id="method_of_fp_current" name="method_of_fp_current"
+                                                                placeholder="Method of FP" style="display: none;">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <div class="n-chk">
+                                                                <label
+                                                                    class="new-control new-checkbox checkbox-primary">
+                                                                    <input id="ever_userFP" name="ever_userFP"
+                                                                        type="checkbox" class="new-control-input"
+                                                                        onclick="myFunction3()" unchecked>
+                                                                    <span class="new-control-indicator"></span><label
+                                                                        for="exampleFormControlInput1">Ever User of
+                                                                        FP</label>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control"
+                                                                id="method_of_fp_ever" name="method_of_fp_ever"
+                                                                placeholder="Method of FP" style="display: none;">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <div class="n-chk">
+                                                                <label
+                                                                    class="new-control new-checkbox checkbox-primary">
+                                                                    <input id="become_userFP" name="become_userFP"
+                                                                        type="checkbox" class="new-control-input"
+                                                                        unchecked>
+                                                                    <span class="new-control-indicator"></span><label
+                                                                        for="exampleFormControlInput1">Wants to Become
+                                                                        FP User</label>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="exampleFormControlInput1">Reason</label>
+                                                            <input type="text" class="form-control" id="reason_userFP"
+                                                                name="reason_userFP">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="exampleFormControlInput1">CR Code</label>
+                                                            <input type="text" class="form-control" id="cr_code"
+                                                                name="cr_code">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="exampleFormControlInput1">Client Name</label>
+                                                            <input type="text" class="form-control" id="client_name"
+                                                                name="client_name">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="exampleFormControlInput1">Husband's Name</label>
+                                                            <input type="text" class="form-control" id="husband_name"
+                                                                name="husband_name">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="exampleFormControlInput1">Space b/w last
+                                                                Births</label>
+                                                            <input type="text" class="form-control" id="gap_of_births"
+                                                                name="gap_of_births">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Youngest Child Age</label>
+                                                            <select class="selectpicker" data-live-search="true"
+                                                                data-width="100%" id="youngest_child_age"
+                                                                name="youngest_child_age">
+                                                                <option value="1m">1m</option>
+                                                                <option value="2m">2m</option>
+                                                                <option value="3m">3m</option>
+                                                                <option value="4m">4m</option>
+                                                                <option value="5m">5m</option>
+                                                                <option value="6m">6m</option>
+                                                                <option value="7m">7m</option>
+                                                                <option value="8m">8m</option>
+                                                                <option value="9m">9m</option>
+                                                                <option value="10m">10m</option>
+                                                                <option value="11m">11m</option>
+                                                                <option value="12m">12m</option>
+                                                                <option value="13m">13m</option>
+                                                                <option value="14m">14m</option>
+                                                                <option value="15m">15m</option>
+                                                                <option value="16m">16m</option>
+                                                                <option value="17m">17m</option>
+                                                                <option value="18m">18m</option>
+                                                                <option value="19m">19m</option>
+                                                                <option value="20m">20m</option>
+                                                                <option value="21m">21m</option>
+                                                                <option value="22m">22m</option>
+                                                                <option value="23m">23m</option>
+                                                                <option value="24m">24m</option>
+                                                                <option value="25m">25m</option>
+                                                                <option value="26m">26m</option>
+                                                                <option value="27m">27m</option>
+                                                                <option value="28m">28m</option>
+                                                                <option value="29m">29m</option>
+                                                                <option value="30m">30m</option>
+                                                                <option value="1y">1y</option>
+                                                                <option value="2y">2y</option>
+                                                                <option value="3y">3y</option>
+                                                                <option value="4y">4y</option>
+                                                                <option value="5y">5y</option>
+                                                                <option value="6y">6y</option>
+                                                                <option value="7y">7y</option>
+                                                                <option value="8y">8y</option>
+                                                                <option value="9y">9y</option>
+                                                                <option value="10y">10y</option>
+                                                                <option value="11y">11y</option>
+                                                                <option value="12y">12y</option>
+                                                                <option value="13y">13y</option>
+                                                                <option value="14y">14y</option>
+                                                                <option value="15y">15y</option>
+                                                                <option value="16y">16y</option>
+                                                                <option value="17y">17y</option>
+                                                                <option value="18y">18y</option>
+                                                                <option value="19y">19y</option>
+                                                                <option value="20y">20y</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>User Status</label>
+                                                            <select class="selectpicker" data-live-search="true"
+                                                                data-width="100%" id="user_status" name="user_status">
+                                                                <option value="New User">New User</option>
+                                                                <option value="Current">Current</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>User Type</label>
+                                                            <select class="selectpicker" data-live-search="true"
+                                                                data-width="100%" id="user_type" name="user_type">
+                                                                <option value="Ever User"> Ever User </option>
+                                                                <option value="Never User"> Never User </option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>New User by Wealth Quantile</label>
+                                                            <select class="selectpicker" data-live-search="true"
+                                                                data-width="100%" id="user_by_wealth"
+                                                                name="user_by_wealth">
+                                                                <option value="Transitory Non Poor (Rs: 3,788/PM)">
+                                                                    Transitory Non Poor (Rs: 3,788/PM)</option>
+                                                                <option value="Transitory Vulnerable (Rs: 3,030 PM)">
+                                                                    Transitory Vulnerable (Rs: 3,030 PM)</option>
+                                                                <option value="Non Poor (Rs: 6,060/PM)">Non Poor (Rs:
+                                                                    6,060/PM)</option>
+                                                                <option value="Transitory Poor(2,273/PM)">Transitory
+                                                                    Poor(2,273/PM)</option>
+                                                                <option value="Chronically Poor(1,515/PM)">Chronically
+                                                                    Poor(1,515/PM)</option>
+                                                                <option value="Extremely Poor(0-1,514/PM)">Extremely
+                                                                    Poor(0-1,514/PM)</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Services</label>
+                                                            <select class="selectpicker" data-live-search="true"
+                                                                data-width="100%" id="services" name="services">
+                                                                <option value="Generated">Generated</option>
+                                                                <option value="Reffered">Reffered</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>New User by Occasion</label>
+                                                            <select class="selectpicker" data-live-search="true"
+                                                                data-width="100%" id="user_by_occasion"
+                                                                name="user_by_occasion">
+                                                                <option selected value="Post Partum">Post Partum
+                                                                </option>
+                                                                <option value="Post Abortion">Post Abortion</option>
+                                                                <option value="Interval">Interval</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>New User by Disability</label>
+                                                            <select class="selectpicker" data-live-search="true"
+                                                                data-width="100%" id="user_by_disability"
+                                                                name="user_by_disability">
+                                                                <option value="Hearing" selected>Hearing</option>
+                                                                <option value="Seeing">Seeing</option>
+                                                                <option value="Remembering">Remembering</option>
+                                                                <option value="Walking">Walking</option>
+                                                                <option value="Self Caring(Washing/Dressing)">Self
+                                                                    Caring(Washing/Dressing)</option>
+                                                                <option value="Communication(Understanding)">
+                                                                    Communication(Understanding)</option>
+                                                                <option value="No Disability">No Disability</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="exampleFormControlInput1">Client Service
+                                                                Date</label>
+                                                            <div class="form-group mb-0">
+                                                                <input id="basicFlatpickr1" name="basicFlatpickr1"
+                                                                    value=""
+                                                                    class="form-control flatpickr flatpickr-input active"
+                                                                    type="text" placeholder="Select Date..">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Contraceptive Method</label>
+                                                            <select class="selectpicker" data-live-search="true"
+                                                                data-width="100%" id="contra_method"
+                                                                name="contra_method">
+                                                                <% if(listData2.length!=0){ var i=1; var j=1;
+                                                                    listData2.forEach(function(data) { %>
+                                                                    <option value="<%= data.product_name %>">
+                                                                        <%= data.product_name %>
+                                                                    </option>
+
+                                                                    <% }); } %>
+                                                                <!-- <option selected value="Injectables">Injectables</option>
+                                                                <option value="Oral Pills">Oral Pills</option>
+                                                                <option value="Condoms">Condoms</option>
+                                                                <option value="Copper T">Copper T</option> -->
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="exampleFormControlInput1">Next Service
+                                                                Date</label>
+                                                            <div class="form-group mb-0">
+                                                                <input id="basicFlatpickr2" name="basicFlatpickr2"
+                                                                    value=""
+                                                                    class="form-control flatpickr flatpickr-input active"
+                                                                    type="text" placeholder="Select Date..">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="exampleFormControlInput1">Contraceptive
+                                                                Quantity</label>
+                                                            <input type="text" class="form-control" id="contra_quantity"
+                                                                name="contra_quantity">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="exampleFormControlInput1">Contraceptive Follow
+                                                                Up Frequency</label>
+                                                            <input type="text" class="form-control"
+                                                                id="contra_frequency" name="contra_frequency">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="container-fluid">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <button class="btn btn-outline-primary mb-2 m-2"
+                                                            style="float: right;">Cancel</button>
+                                                        <button class="btn btn-primary mb-2 m-2" style="float: right;"
+                                                            type="submit">Save</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="footer-wrapper col-xl-12">
+                                <div class="footer-section f-section-1">
+                                    <p class="">© 2021 <a target="_blank"
+                                            href="https://designreset.com/">DesignReset</a></p>
+                                </div>
+                                <div class="footer-section f-section-2">
+                                    <p class="">Coded with <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            class="feather feather-heart">
+                                            <path
+                                                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                                            </path>
+                                        </svg></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+    </div>
+    <!--  END CONTENT AREA  -->
+    </div>
+    <!-- END MAIN CONTAINER -->
+
+
+
+    <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
+    <script src="/assets/js/libs/jquery-3.1.1.min.js"></script>
+    <script src="/bootstrap/js/popper.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="/assets/js/app.js"></script>
+
+    <!-- BEGIN PAGE LEVEL SCRIPTS -->
+    <script src="/assets/js/scrollspyNav.js"></script>
+    <script src="/plugins/flatpickr/flatpickr.js"></script>
+    <script src="/plugins/noUiSlider/nouislider.min.js"></script>
+
+    <script src="/plugins/flatpickr/custom-flatpickr.js"></script>
+    <script src="/plugins/noUiSlider/custom-nouiSlider.js"></script>
+    <script src="/ plugins/bootstrap-range-Slider/bootstrap-rangeSlider.js"></script>
+    <!-- END PAGE LEVEL SCRIPTS -->
+
+    <script>
+        $(document).ready(function () {
+            App.init();
+        });
+
+        var f2 = flatpickr(document.getElementById('basicFlatpickr1'));
+        var f3 = flatpickr(document.getElementById('basicFlatpickr2'));
+    </script>
+    <script src="/assets/js/custom.js"></script>
+    <!-- END GLOBAL MANDATORY SCRIPTS -->
+    <script>
+        function myFunction() {
+            var checkBox = document.getElementById("pregnant_check");
+            var text = document.getElementById("no_of_months");
+            if (checkBox.checked == true) {
+                text.style.display = "block";
+            } else {
+                text.style.display = "none";
+            }
+        }
+    </script>
+
+    <script>
+        function myFunction1() {
+            var checkBox = document.getElementById("child_age_5plus");
+            var text = document.getElementById("age_of_children");
+            if (checkBox.checked == true) {
+                text.style.display = "block";
+            } else {
+                text.style.display = "none";
+            }
+        }
+    </script>
+
+    <script>
+        function myFunction2() {
+            var checkBox = document.getElementById("current_userFP");
+            var text = document.getElementById("method_of_fp_current");
+            if (checkBox.checked == true) {
+                text.style.display = "block";
+            } else {
+                text.style.display = "none";
+            }
+        }
+    </script>
+
+    <script>
+        function myFunction3() {
+            var checkBox = document.getElementById("ever_userFP");
+            var text = document.getElementById("method_of_fp_ever");
+            if (checkBox.checked == true) {
+                text.style.display = "block";
+            } else {
+                text.style.display = "none";
+            }
+        }
+        
+    </script>
+
+    <!-- BEGIN PAGE LEVEL CUSTOM SCRIPTS -->
+    <script src="/plugins/table/datatable/datatables.js"></script>
+    <!-- NOTE TO Use Copy CSV Excel PDF Print Options You Must Include These Files  -->
+    <script src="/plugins/table/datatable/button-ext/dataTables.buttons.min.js"></script>
+    <script src="/plugins/table/datatable/button-ext/jszip.min.js"></script>
+    <script src="/plugins/table/datatable/button-ext/buttons.html5.min.js"></script>
+    <script src="/plugins/table/datatable/button-ext/buttons.print.min.js"></script>
+    <script src="/plugins/bootstrap-select/bootstrap-select.min.js"></script>
+    <script>
+        $('#html5-extension').DataTable({
+            "dom": "<'dt--top-section'<'row'<'col-sm-12 col-md-6 d-flex justify-content-md-start justify-content-center'B><'col-sm-12 col-md-6 d-flex justify-content-md-end justify-content-center mt-md-0 mt-3'f>>>" +
+                "<'table-responsive'tr>" +
+                "<'dt--bottom-section d-sm-flex justify-content-sm-between text-center'<'dt--pages-count  mb-sm-0 mb-3'i><'dt--pagination'p>>",
+            buttons: {
+                buttons: [
+                    { extend: 'copy', className: 'btn btn-sm' },
+                    { extend: 'csv', className: 'btn btn-sm' },
+                    { extend: 'excel', className: 'btn btn-sm' },
+                    { extend: 'print', className: 'btn btn-sm' }
+                ]
+            },
+            "oLanguage": {
+                "oPaginate": { "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>', "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>' },
+                "sInfo": "Showing page _PAGE_ of _PAGES_",
+                "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
+                "sSearchPlaceholder": "Search...",
+                "sLengthMenu": "Results :  _MENU_",
+            },
+            "stripeClasses": [],
+            "lengthMenu": [7, 10, 20, 50],
+            "pageLength": 10
+        });
+    </script>
+    <!-- END PAGE LEVEL CUSTOM SCRIPTS -->
+</body>
+
+<!-- Mirrored from designreset.com/cork/ltr/demo12/table_dt_html5.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 03 May 2021 05:26:54 GMT -->
+
+</html>

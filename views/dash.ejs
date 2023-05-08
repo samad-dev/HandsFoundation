@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+    <title>Hands-Dashboard</title>
+    <link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico" />
+    <link href="/assets/css/loader.css" rel="stylesheet" type="text/css" />
+    <script src="/assets/js/loader.js"></script>
+
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:400,500,600,700&amp;display=swap" rel="stylesheet">
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/plugins.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/structure.css" rel="stylesheet" type="text/css" class="structure" />
+    <!-- END GLOBAL MANDATORY STYLES -->
+
+    <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
+    <link href="/assets/css/scrollspyNav.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/apex/apexcharts.css" rel="stylesheet" type="text/css">
+
+    <link href="/assets/css/dashboard/dash_1.css" rel="stylesheet" type="text/css" class="dashboard-analytics" />
+    <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
+    <link rel="stylesheet" type="text/css" href="plugins/table/datatable/datatables.css">
+    <link rel="stylesheet" type="text/css" href="plugins/table/datatable/custom_dt_miscellaneous.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/forms/theme-checkbox-radio.css">
+    <link rel="stylesheet" type="text/css" href="plugins/table/datatable/dt-global_style.css">
+</head>
+
+<body class="dashboard-analytics admin-header">
+    <script>
+        var lhv_g = [];
+        var lhv_g_label = [];
+        var lhv_g_n = [];
+        var lhv_g_n_label = [];
+        var dis_g = [];
+        var dis_gp = [];
+        var dis_g_label = [];
+        var dis_g_labelp = [];
+        var dis_n_g = [];
+        var dis_n_gp = [];
+        var dis_n_g_label = [];
+        var dis_n_g_labelp = [];
+    </script>
+    <!-- BEGIN LOADER -->
+    <div id="load_screen">
+        <div class="loader">
+            <div class="loader-content">
+                <div class="spinner-grow align-self-center"></div>
+            </div>
+        </div>
+    </div>
+    <!--  END LOADER -->
+
+    <!--  BEGIN MAIN CONTAINER  -->
+    <div class="main-container" id="container">
+
+        <div class="overlay"></div>
+        <div class="search-overlay"></div>
+
+        <!--  BEGIN SIDEBAR  -->
+        <%- include("sidebar"); %>
+            <!--  END SIDEBAR  -->
+
+            <!--  BEGIN CONTENT AREA  -->
+            <div id="content" class="main-content">
+                <div class="layout-px-spacing">
+
+                    <div class="content-container">
+
+                        <div class="col layout-top-spacing">
+                            <div class="col-content">
+
+                                <div class="header-container">
+                                    <header class="header navbar navbar-expand-sm">
+                                        <div class="d-flex">
+                                            <a href="javascript:void(0);" class="sidebarCollapse"
+                                                data-placement="bottom">
+                                                <div class="bt-menu-trigger">
+                                                    <span></span>
+                                                </div>
+                                            </a>
+                                            <div class="page-header">
+                                                <div class="page-title">
+                                                    <h3>Dashboard</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </header>
+                                </div>
+
+                                <div class="admin-data-content layout-top-spacing">
+
+                                    <div class="row">
+
+                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 layout-spacing">
+                                            <div class="widget widget-one">
+                                                <div class="widget-heading">
+                                                    <h6 class="">Statistics</h6>
+                                                </div>
+                                                <div class="w-chart">
+
+                                                    <div class="w-chart-section total-visits-content">
+                                                        <div class="w-detail">
+                                                            <p class="w-title">Total Marvi's</p>
+                                                            <% if(data1.length!=0){ var i=1; var j=1;
+                                                                data1.forEach(function(data) { %>
+                                                                <p class="w-stats">
+                                                                    <%= data.count %>
+                                                                </p>
+
+                                                                <% }) %>
+                                                                    <% } %>
+                                                                        <% if(data11.length!=0){ var i=1; var j=1;
+                                                                            data11.forEach(function(data) { %>
+                                                                            <script>
+                                                                                var a1 = "<%= data.count %>";
+                                                                                var one1 = parseInt(a1);
+                                                                                lhv_g.push(one1);
+                                                                                var a2 = "<%= data.m_lhvname %>";
+                                                                                lhv_g_label.push(a2)
+                                                                            </script>
+                                                                            <% }) %>
+                                                                                <% } %>
+                                                                                    <% if(data6.length!=0){ var i=1; var
+                                                                                        j=1;
+                                                                                        data6.forEach(function(data) {
+                                                                                        %>
+                                                                                        <script>
+                                                                                            var a1 = "<%= data.count1 %>";
+                                                                                            var one1 = parseInt(a1);
+                                                                                            dis_g.push(one1);
+                                                                                            dis_gp.push(percentage2(one1,4));
+
+                                                                                            var a2 = "<%= data.m_district_name %>";
+                                                                                            dis_g_label.push(a2)
+                                                                                            dis_g_labelp.push(a2)
+                                                                                            function percentage2(num, per) {
+                                                                return (num / 100) * per;
+                                                            }
+                                                                                        </script>
+                                                                                        <% }) %>
+                                                                                            <% } %>
+                                                        </div>
+                                                        <img src="/assets/img/aunt.png" width="50px" height="50px" />
+                                                    </div>
+                                                    <% if(data7.length!=0){ var i=1; var j=1;
+                                                        data7.forEach(function(data) { %>
+                                                        <script>
+                                                            var a1 = "<%= data.count1 %>";
+                                                            var one1 = parseInt(a1);
+                                                            dis_n_gp.push(percentage(one1, 4));
+                                                            dis_n_g.push(one1);
+                                                            var a2 = "<%= data.m_district_name %>";
+                                                            dis_n_g_label.push(a2)
+                                                            dis_n_g_labelp.push(a2)
+                                                            function percentage(num, per) {
+                                                                return (num / 100) * per;
+                                                            }
+                                                        </script>
+                                                        <% }) %>
+                                                            <% } %>
+                                                                <% if(data8.length!=0){ var i=1; var j=1;
+                                                                    data8.forEach(function(data) { %>
+                                                                    <script>
+
+                                                                        var a1 = "<%= data.count %>";
+                                                                        var one1 = parseInt(a1);
+                                                                        lhv_g_n.push(one1);
+                                                                        var a2 = "<%= data.m_lhvname %>";
+                                                                        lhv_g_n_label.push(a2)
+                                                                    </script>
+                                                                    <% }) %>
+                                                                        <% } %>
+                                                                            <script>
+                                                                                console.log(lhv_g_n);
+                                                                            </script>
+                                                                            <div
+                                                                                class="w-chart-section paid-visits-content">
+                                                                                <div class="w-detail">
+                                                                                    <p class="w-title">Total LHV's</p>
+                                                                                    <% if(data2.length!=0){ var i=1; var
+                                                                                        j=1;
+                                                                                        data2.forEach(function(data) {
+                                                                                        %>
+                                                                                        <p class="w-stats">
+                                                                                            <%= data.count %>
+                                                                                        </p>
+                                                                                        <% }) %>
+                                                                                            <% } %>
+                                                                                </div>
+                                                                                <img src="/assets/img/employee.png"
+                                                                                    width="50px" height="50px" />
+                                                                            </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 layout-spacing">
+                                            <div class="widget widget-one">
+                                                <div class="widget-heading">
+                                                    <h6 class="">Statistics</h6>
+                                                </div>
+                                                <div class="w-chart">
+
+                                                    <div class="w-chart-section total-visits-content">
+                                                        <div class="w-detail">
+                                                            <p class="w-title">Total Clients</p>
+                                                            <% if(data3.length!=0){ var i=1; var j=1;
+                                                                data3.forEach(function(data) { %>
+                                                                <p class="w-stats">
+                                                                    <%= data.count %>
+                                                                </p>
+                                                                <script>
+                                                                    var coun = "<%= data.count %>";
+                                                                </script>
+                                                                <% }) %>
+                                                                    <% } %>
+                                                                    <% if(data12.length!=0){ var i=1; var j=1;
+                                                                        data12.forEach(function(data) { %>
+                                                                        <p class="w-stats">
+                                                                            <%= data.count %>
+                                                                        </p>
+                                                                        <script>
+                                                                            var coun1 = "<%= data.count1 %>";
+                                                                        </script>
+                                                                        <% }) %>
+                                                                            <% } %>
+                                                        </div>
+                                                        <img src="/assets/img/target.png" width="50px" height="50px" />
+
+                                                    </div>
+
+
+                                                    <div class="w-chart-section paid-visits-content">
+                                                        <div class="w-detail">
+                                                            <p class="w-title">Total Districts</p>
+                                                            <% if(data4.length!=0){ var i=1; var j=1;
+                                                                data4.forEach(function(data) { %>
+                                                                <p class="w-stats">
+                                                                    <%= data.count %>
+                                                                </p>
+                                                                <% }) %>
+                                                                    <% } %>
+                                                        </div>
+                                                        <img src="/assets/img/countryside.png" width="50px"
+                                                            height="50px" />
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="chartLine" class="col-xl-12 layout-top-spacing layout-spacing">
+                                            <div class="statbox widget box box-shadow">
+                                                <div class="widget-header">
+                                                    <div class="row">
+                                                        <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                                                            <h4>LHV Wise New Clients</h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="widget-content widget-content-area">
+                                                    <div id="uniqueVisits2" class=""></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <div class="row widget-statistic">
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
+                                                <div class="widget widget-one_hybrid widget-followers">
+                                                    <div class="widget-heading">
+                                                        <div class="w-title">
+                                                            <div class="w-icon">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                    height="24" viewBox="0 0 24 24" fill="none"
+                                                                    stroke="currentColor" stroke-width="2"
+                                                                    stroke-linecap="round" stroke-linejoin="round"
+                                                                    class="feather feather-users">
+                                                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2">
+                                                                    </path>
+                                                                    <circle cx="9" cy="7" r="4"></circle>
+                                                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                                                </svg>
+                                                            </div>
+                                                            <div class="">
+                                                                <p class="w-value">District Wise Clients</p>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="widget-content">
+                                                        <div class="w-chart">
+                                                            <div id="samad"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
+                                                <div class="widget widget-one_hybrid widget-followers">
+                                                    <div class="widget-heading">
+                                                        <div class="w-title">
+                                                            <div class="w-icon">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                    height="24" viewBox="0 0 24 24" fill="none"
+                                                                    stroke="currentColor" stroke-width="2"
+                                                                    stroke-linecap="round" stroke-linejoin="round"
+                                                                    class="feather feather-users">
+                                                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2">
+                                                                    </path>
+                                                                    <circle cx="9" cy="7" r="4"></circle>
+                                                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                                                </svg>
+                                                            </div>
+                                                            <div class="">
+                                                                <p class="w-value"> District Wise New Clients</p>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="widget-content">
+                                                        <div class="w-chart">
+                                                            <div id="samad_n"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
+                                                <div class="widget widget-one_hybrid widget-followers">
+                                                    <div class="widget-heading">
+                                                        <div class="w-title">
+                                                            <div class="w-icon">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                    height="24" viewBox="0 0 24 24" fill="none"
+                                                                    stroke="currentColor" stroke-width="2"
+                                                                    stroke-linecap="round" stroke-linejoin="round"
+                                                                    class="feather feather-users">
+                                                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2">
+                                                                    </path>
+                                                                    <circle cx="9" cy="7" r="4"></circle>
+                                                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                                                </svg>
+                                                            </div>
+                                                            <div class="">
+                                                                <p class="w-value">New Clients</p>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="widget-content">
+                                                        <div class="w-chart">
+                                                            <div id="samad_n2"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 layout-spacing">
+                                                <div class="widget widget-one_hybrid widget-followers">
+                                                    <div class="widget-heading">
+                                                        <div class="w-title">
+                                                            <div class="w-icon">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                    height="24" viewBox="0 0 24 24" fill="none"
+                                                                    stroke="currentColor" stroke-width="2"
+                                                                    stroke-linecap="round" stroke-linejoin="round"
+                                                                    class="feather feather-users">
+                                                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2">
+                                                                    </path>
+                                                                    <circle cx="9" cy="7" r="4"></circle>
+                                                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                                                </svg>
+                                                            </div>
+                                                            <div class="">
+                                                                <p class="w-value">Total Clients</p>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="widget-content">
+                                                        <div class="w-chart">
+                                                            <div id="samad_n3"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div> -->
+                                        </div>
+                                    </div>
+                                    <div id="chartLine" class="col-xl-12 layout-top-spacing layout-spacing">
+                                        <div class="statbox widget box box-shadow">
+                                            <div class="widget-header">
+                                                <div class="row">
+                                                    <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                                                        <h4><b> LHV Wise Marvi Workers</b></h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="widget-content widget-content-area">
+                                                <div id="s-line" class=""></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <div class="row widget-statistic">
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 layout-spacing">
+                                                <div class="widget widget-one_hybrid widget-followers">
+                                                    <div class="widget-heading">
+                                                        <div class="w-title">
+                                                            <div class="w-icon">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                    height="24" viewBox="0 0 24 24" fill="none"
+                                                                    stroke="currentColor" stroke-width="2"
+                                                                    stroke-linecap="round" stroke-linejoin="round"
+                                                                    class="feather feather-users">
+                                                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2">
+                                                                    </path>
+                                                                    <circle cx="9" cy="7" r="4"></circle>
+                                                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                                                </svg>
+                                                            </div>
+                                                            <div class="">
+                                                                <p class="w-value">Total FP Users</p>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="widget-content">
+                                                        <div class="statbox widget box box-shadow">
+                                                            <div class="widget-content widget-content-area">
+                                                                <table id="html5-extension1" class="table table-hover">
+                                                                    <thead>
+                                                                        <tr role="row">
+                                                                            <th>Method Wise Clients</th>
+                                                                            <th>Clients</th>
+
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <% if(data9.length!=0){ var i=1; var j=1;
+                                                                            data9.forEach(function(data) { %>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <%= data.m_contraceptivemethod %>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <%= data.Count1 %>
+                                                                                </td>
+
+
+                                                                            </tr>
+                                                                            <% }) %>
+                                                                                <% } %>
+                                                                                <% if(data3.length!=0){ var i=1; var j=1;
+                                                                                    data3.forEach(function(data) { %>
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                <tr>
+                                                                                    <td>
+                                                                                       Total
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <%= data.count %>
+                                                                                    </td>
+
+
+                                                                                </tr>
+                                                                                <% }) %>
+                                                                                        <% } %>
+                                                                    </tbody>
+
+                                                                    <tfoot>
+                                                                        <tr role="row">
+                                                                            <th>Method Wise Clients</th>
+                                                                            <th>Clients</th>
+
+
+                                                                        </tr>
+                                                                    </tfoot>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 layout-spacing">
+                                                <div class="widget widget-one_hybrid widget-referral">
+                                                    <div class="widget-heading">
+                                                        <div class="w-title">
+                                                            <div class="w-icon">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                    height="24" viewBox="0 0 24 24" fill="none"
+                                                                    stroke="currentColor" stroke-width="2"
+                                                                    stroke-linecap="round" stroke-linejoin="round"
+                                                                    class="feather feather-link">
+                                                                    <path
+                                                                        d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71">
+                                                                    </path>
+                                                                    <path
+                                                                        d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71">
+                                                                    </path>
+                                                                </svg>
+                                                            </div>
+                                                            <div class="">
+                                                                <p class="w-value">New FP Users</p>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="widget-content">
+                                                        <div class="w-chart">
+                                                            <div class="statbox widget box box-shadow">
+                                                                <div class="widget-content widget-content-area">
+                                                                    <table id="html5-extension"
+                                                                        class="table table-hover">
+                                                                        <thead>
+                                                                            <tr role="row">
+                                                                                <th>Method Wise New Clients</th>
+                                                                                <th>Clients</th>
+
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <% if(data10.length!=0){ var i=1; var j=1;
+                                                                                data10.forEach(function(data) { %>
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        <%= data.m_contraceptivemethod
+                                                                                            %>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <%= data.Count1 %>
+                                                                                    </td>
+
+
+                                                                                </tr>
+                                                                                <% }) %>
+                                                                                    <% } %>
+                                                                                    <% if(data12.length!=0){ var i=1; var j=1;
+                                                                                        data12.forEach(function(data) { %>
+                                                                                        
+                                                                                        
+                                                                                        
+                                                                                    <tr>
+                                                                                        <td>
+                                                                                           Total
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <%= data.count1 %>
+                                                                                        </td>
+    
+    
+                                                                                    </tr>
+                                                                                    <% }) %>
+                                                                                            <% } %>
+                                                                        </tbody>
+
+                                                                        <tfoot>
+                                                                            <tr role="row">
+                                                                                <th>Method Wise New Clients</th>
+                                                                                <th>Clients</th>
+
+
+                                                                            </tr>
+                                                                        </tfoot>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="table-responsive">
+                                        <div class="col-lg-12">
+                                            <div class="statbox widget box box-shadow">
+                                                <div class="widget-content widget-content-area">
+
+                                                    <table id="individual-col-search"
+                                                        class="table table-hover non-hover" style="width:100%">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>CR-Code</th>
+                                                                <th>Cleint Name</th>
+
+                                                                <th>Marvi W.Name</th>
+                                                                <th>LHV Name</th>
+                                                                <th>District</th>
+
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <% if(data5.length!=0){ var i=1; var j=1;
+                                                                data5.forEach(function(data) { %>
+                                                                <tr>
+                                                                    <td>
+                                                                        <%= data.m_crcode %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%= data.Client_Name %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%= data.MWoName %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%= data.LHV %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%= data.District %>
+                                                                    </td>
+                                                                </tr>
+
+                                                                <% }) %>
+                                                                    <% } %>
+                                                        </tbody>
+                                                        <tfoot>
+                                                            <tr>
+                                                                <th>CR-Code</th>
+                                                                <th>Cleint Name</th>
+
+                                                                <th>Marvi W.Name</th>
+                                                                <th>LHV Name</th>
+                                                                <th>District</th>
+
+                                                            </tr>
+                                                        </tfoot>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+                                </div>
+                            </div>
+                            <div class="footer-wrapper col-xl-12">
+                                <div class="footer-section f-section-1">
+                                    <p class="">© 2021 <a target="_blank" href="https://designreset.com/">The
+                                            Hands Foundation</a></p>
+                                </div>
+                                <div class="footer-section f-section-2">
+                                    <p class="">Coded with <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            class="feather feather-heart">
+                                            <path
+                                                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                                            </path>
+                                        </svg></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+    </div>
+    <!--  END CONTENT AREA  -->
+    </div>
+    <!-- END MAIN CONTAINER -->
+
+    <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
+    <script src="/assets/js/libs/jquery-3.1.1.min.js"></script>
+    <script src="/bootstrap/js/popper.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="/assets/js/app.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            App.init();
+
+        });
+
+
+
+
+
+
+    </script>
+    <script src="/assets/js/custom.js"></script>
+    <!-- END GLOBAL MANDATORY SCRIPTS -->
+
+    <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
+    <script src="/assets/js/scrollspyNav.js"></script>
+    <script src="/plugins/apex/apexcharts.min.js"></script>
+    <!-- <script src="/plugins/apex/custom-apexcharts.js"></script> -->
+
+    <script src="/assets/js/dashboard/dash_1.js"></script>
+    <script src="/plugins/table/datatable/datatables.js"></script>
+    <script src="/plugins/table/datatable/button-ext/dataTables.buttons.min.js"></script>
+    <script src="/plugins/table/datatable/custom_miscellaneous.js"></script>
+    <script src="/plugins/table/datatable/datatables.js"></script>
+    <!-- NOTE TO Use Copy CSV Excel PDF Print Options You Must Include These Files  -->
+    <script src="/plugins/table/datatable/button-ext/dataTables.buttons.min.js"></script>
+    <script src="/plugins/table/datatable/button-ext/jszip.min.js"></script>
+    <script src="/plugins/table/datatable/button-ext/buttons.html5.min.js"></script>
+    <script src="/plugins/table/datatable/button-ext/buttons.print.min.js"></script>
+    <script>
+                         var radialChart = {
+            chart: {
+                height: 350,
+                type: 'radialBar',
+                toolbar: {
+                  show: false,
+                }
+            },
+            plotOptions: {
+                radialBar: {
+                    dataLabels: {
+                        name: {
+                            fontSize: '22px',
+                        },
+                        value: {
+                            fontSize: '16px',
+                        },
+                        total: {
+                            show: true,
+                            label: 'Total',
+                            formatter: function (w) {
+                                // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
+                                return coun1
+                            }
+                        }
+                    }
+                }
+            },
+            series: dis_n_gp,
+            labels: dis_n_g_labelp,    
+        }
+
+        var chart = new ApexCharts(
+            document.querySelector("#samad_n2"),
+            radialChart
+        );
+
+        chart.render();
+
+        var radialChart = {
+            chart: {
+                height: 350,
+                type: 'donut',
+                toolbar: {
+                  show: false,
+                }
+            },
+            plotOptions: {
+                radialBar: {
+                    dataLabels: {
+                        name: {
+                            fontSize: '22px',
+                        },
+                        value: {
+                            fontSize: '16px',
+                        },
+                        total: {
+                            show: true,
+                            label: 'Total',
+                            formatter: function (w) {
+                                // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
+                                return coun
+                            }
+                        }
+                    }
+                }
+            },
+            series: dis_gp,
+            labels: dis_g_labelp,    
+        }
+
+        var chart = new ApexCharts(
+            document.querySelector("#samad_n3"),
+            radialChart
+        );
+
+        chart.render();
+        var sline = {
+            chart: {
+                height: 350,
+                type: 'bar',
+                zoom: {
+                    enabled: true
+                },
+                toolbar: {
+                    show: false,
+                }
+            },
+            dataLabels: {
+                enabled: false
+            },
+            colors: ['#4280e2'],
+            stroke: {
+                curve: 'smooth'
+            },
+            series: [{
+                name: "LHV Wise Marvi",
+                data: lhv_g_n
+            }],
+            // title: {
+            //     text: 'Average Fuel Cost / Month',
+            //     align: 'left'
+            // },
+            grid: {
+                row: {
+                    colors: ['#f1f2f3', 'transparent'], // takes an array which will be repeated on columns
+                    opacity: 0.5
+                },
+            },
+            xaxis: {
+                categories: lhv_g_n_label
+            }
+        }
+
+        var chart = new ApexCharts(
+            document.querySelector("#s-line"),
+            sline
+        );
+
+        chart.render();
+
+
+        var options5_n = {
+            chart: {
+                height: 350,
+                type: 'bar',
+                zoom: {
+                    enabled: true
+                },
+                toolbar: {
+                    show: false,
+                }
+            },
+            dataLabels: {
+                enabled: false
+            },
+            colors: ['#f35002'],
+
+            series: [{
+                name: "Clients",
+                data: dis_n_g
+            }],
+            // title: {
+            //     text: 'Average Fuel Cost / Month',
+            //     align: 'left'
+            // },
+            grid: {
+                row: {
+                    colors: ['#f1f1f1', 'transparent'], // takes an array which will be repeated on columns
+                    opacity: 0.5
+                },
+            },
+            xaxis: {
+                categories: dis_n_g_label
+            }
+        }
+        var chart3 = new ApexCharts(
+            document.querySelector("#samad_n"),
+            options5_n
+        );
+        chart3.render();
+
+
+
+        var options5 = {
+            chart: {
+                type: 'bar',
+                height: 160,
+                sparkline: {
+                    enabled: true
+                },
+                plotOptions: {
+                    bar: {
+                        horizontal: true,
+                        columnWidth: '55%',
+                        endingShape: 'rounded'
+                    },
+                }
+            },
+            stroke: {
+                curve: 'smooth',
+                width: 2,
+            },
+            fill: {
+                opacity: 0.8,
+            },
+            series: [{
+                name: 'Clients',
+                data: dis_g
+            }],
+            labels: dis_g_label,
+            yaxis: {
+                min: 1
+            },
+            colors: ['#044bbd'],
+            tooltip: {
+                x: {
+                    show: true,
+                },
+                y: {
+                    show: true
+                }
+            }
+        }
+
+        var chart2 = new ApexCharts(
+            document.querySelector("#samad"),
+            options5
+        );
+        chart2.render();
+
+
+
+
+
+        var d_1options1 = {
+            chart: {
+                height: 350,
+                type: 'bar',
+                toolbar: {
+                    show: false,
+                }
+            },
+            colors: ['#517281', '#f67062'],
+            plotOptions: {
+                bar: {
+                    horizontal: false,
+                    columnWidth: '55%',
+                    endingShape: 'rounded'
+                },
+            },
+            dataLabels: {
+                enabled: false
+            },
+            legend: {
+                position: 'bottom',
+                horizontalAlign: 'center',
+                fontSize: '14px',
+                markers: {
+                    width: 10,
+                    height: 10,
+                },
+                itemMargin: {
+                    horizontal: 8,
+                    vertical: 8
+                }
+            },
+            stroke: {
+                show: true,
+                width: 2,
+                colors: ['transparent']
+            },
+            series: [{
+                data: lhv_g,
+            }],
+            labels: lhv_g_label,
+            tooltip: {
+                y: {
+                    formatter: function (val) {
+                        return val
+                    }
+                }
+            }
+        }
+
+        var d_1C_3 = new ApexCharts(
+            document.querySelector("#uniqueVisits2"),
+            d_1options1
+        );
+        d_1C_3.render();
+
+    </script>
+    <script>
+        $('#html5-extension').DataTable({
+            "dom": "<'dt--top-section'<'row'<'col-sm-12 col-md-6 d-flex justify-content-md-start justify-content-center'B><'col-sm-12 col-md-6 d-flex justify-content-md-end justify-content-center mt-md-0 mt-3'f>>>" +
+                "<'table-responsive'tr>" +
+                "<'dt--bottom-section d-sm-flex justify-content-sm-between text-center'<'dt--pages-count  mb-sm-0 mb-3'i><'dt--pagination'p>>",
+            buttons: {
+                buttons: [
+
+                    { extend: 'csv', className: 'btn btn-sm' },
+                    { extend: 'excel', className: 'btn btn-sm' },
+                    { extend: 'print', className: 'btn btn-sm' }
+                ]
+            },
+            "oLanguage": {
+                "oPaginate": { "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>', "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>' },
+                "sInfo": "Showing page _PAGE_ of _PAGES_",
+                "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
+                "sSearchPlaceholder": "Search...",
+                "sLengthMenu": "Results :  _MENU_",
+            },
+            "stripeClasses": [],
+            "lengthMenu": [10, 100, 200, 500],
+            "pageLength": 10
+        });
+    </script>
+    <script>
+        $('#html5-extension1').DataTable({
+            "dom": "<'dt--top-section'<'row'<'col-sm-12 col-md-6 d-flex justify-content-md-start justify-content-center'B><'col-sm-12 col-md-6 d-flex justify-content-md-end justify-content-center mt-md-0 mt-3'f>>>" +
+                "<'table-responsive'tr>" +
+                "<'dt--bottom-section d-sm-flex justify-content-sm-between text-center'<'dt--pages-count  mb-sm-0 mb-3'i><'dt--pagination'p>>",
+            buttons: {
+                buttons: [
+
+                    { extend: 'csv', className: 'btn btn-sm' },
+                    { extend: 'excel', className: 'btn btn-sm' },
+                    { extend: 'print', className: 'btn btn-sm' }
+                ]
+            },
+            "oLanguage": {
+                "oPaginate": { "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>', "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>' },
+                "sInfo": "Showing page _PAGE_ of _PAGES_",
+                "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
+                "sSearchPlaceholder": "Search...",
+                "sLengthMenu": "Results :  _MENU_",
+            },
+            "stripeClasses": [],
+            "lengthMenu": [10, 100, 200, 500],
+            "pageLength": 10
+        });
+    </script>
+    <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
+
+</body>
+
+<!-- Mirrored from designreset.com/cork/ltr/demo12/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 03 May 2021 05:25:50 GMT -->
+
+</html>
