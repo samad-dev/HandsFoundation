@@ -794,7 +794,7 @@ exports.transfer = function (req, res) {
         var request = new sql.Request();
 
         // query to the database and get the records
-        request.query('select top 75000  * from [dbo].[add_client_table] where id >61110', async function (err, recordset) {
+        request.query('select top 100000  * from [dbo].[add_client_table] where id >136110', async function (err, recordset) {
 
             if (err) console.log(err)
 
